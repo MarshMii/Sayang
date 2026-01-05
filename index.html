@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun Lasmi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<h1>Selamat Ulang Tahun Lasmi</h1>
+
+<!-- AUDIO MANUAL -->
+<div id="audio-control">
+    <button id="playPause">▶ Play/Pause Lagu</button>
+    <audio id="bg-music" loop preload="auto">
+        <source src="Audio/Ultah.mp3" type="audio/mpeg">
+        Browsermu tidak mendukung audio.
+    </audio>
+</div>
+
+<img src="File/sayangku.jpg" alt="Foto Sayang" class="foto-pacar">
+
+<div class="birthday-message">
+    <p>Selamat ulang tahun. Kamu adalah pribadi yang kuat, pekerja keras, dan selalu bertahan di situasi sesulit apa pun. Itu hal yang sejak dulu aku kagumi dari kamu.</p>
+    <p>Aku tahu sekarang kamu sedang berjuang menyelesaikan skripsi. Aku sungguh mendoakan semuanya lancar dan dipermudah.</p>
+    <p>Lima tahun bersama bukan waktu yang sebentar. Terlalu banyak cerita, tawa, dan perjuangan yang kita lewati untuk aku anggap selesai begitu saja.</p>
+    <p>Aku masih mencintai kamu, dan aku ingin kita mencoba lagi. Bukan mengulang kesalahan lama, tapi memperbaiki apa yang dulu belum sempat kita jaga.</p>
+    <p>Dari: Dicky Novendra</p>
+
+    <a href="https://wa.me/6281259733905?text=Hai%20Kk Dicky%2C%20aku%20udah%20baca%20semuanya..." class="heart-button" target="_blank">
+      Boleh kita ngobrol sebentar?
+    </a>
+</div>
+
+<div class="memories">
+    <img src="File/1.jpg" alt="Kenangan 1" class="memory" onclick="openFullscreen(this)">
+    <img src="File/2.jpg" alt="Kenangan 2" class="memory" onclick="openFullscreen(this)">
+    <img src="File/3.jpg" alt="Kenangan 3" class="memory" onclick="openFullscreen(this)">
+    <img src="File/4.jpg" alt="Kenangan 4" class="memory" onclick="openFullscreen(this)">
+</div>
+
+<script>
+// ===== AUDIO PLAY/PAUSE =====
+const music = document.getElementById("bg-music");
+const playBtn = document.getElementById("playPause");
+playBtn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play().catch(e => console.log("Audio error:", e));
+        playBtn.textContent = "⏸ Pause Lagu";
+    } else {
+        music.pause();
+        playBtn.textContent = "▶ Play Lagu";
+    }
+});
+
+// ===== LOVEFALL =====
+function createConfetti() {
+    const confetti = document.getElementById('confetti');
+    for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + '%';
+        piece.style.animationDelay = Math.random() * 6 + 's';
+        piece.style.backgroundColor = ['#ff69b4','#ffb6c1','#ffd700'][Math.floor(Math.random()*3)];
+        confetti.appendChild(piece);
+    }
+}
+createConfetti();
+
+// ===== FOTO KENANGAN FULLSCREEN =====
+function openFullscreen(img) {
+    const newWin = window.open("");
+    newWin.document.write('<img src="'+img.src+'" style="width:100%;height:100%;object-fit:contain;">');
+    newWin.document.title = img.alt;
+}
+</script>
+
+</body>
+</html>
